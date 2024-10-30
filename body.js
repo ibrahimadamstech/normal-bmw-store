@@ -99,9 +99,6 @@ async function loadFilesFromRepo() {
         }
     }
     console.log("Commands Installation Completed ✅");
-}
-
-
 });
 
 async function authentification() {
