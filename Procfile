@@ -1,1 +1,2 @@
-worker: node ibrahim.js 
+.env
+worker: node body.js 
