@@ -740,7 +740,7 @@ zk.ev.on('group-participants.update', async (group) => {
 
         
         //événement contact
-        zk.ev.on("contacts.upsert", async (contacts) => {
+          zk.ev.on("contacts.upsert", async (contacts) => {
             const insertContact = (newContact) => {
                 for (const contact of newContact) {
                     if (store.contacts[contact.id]) {
@@ -754,7 +754,7 @@ zk.ev.on('group-participants.update', async (group) => {
             };
             insertContact(contacts);
         });
-        function syncRepo() {
+     /*   function syncRepo() {
     try zk.ev.on('connection.update', async (con) => {
     const { lastDisconnect, connection } = con;
 
