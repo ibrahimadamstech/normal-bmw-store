@@ -699,22 +699,20 @@ const fs = require('fs');
 const path = require('path');*/
 
 zk.ev.on("connection.update", async (con) => {
-    const { lastDisconnect, connection } = con;
-
-    if (connection === "connecting") {
-        console.log("ℹ️ Bmw is connecting...");
-    } 
-    else if (connection === 'open') {
-        console.log("✅ Bmw Connected to WhatsApp! ☺️");
-        console.log("--");
-        await (0, baileys_1.delay)(200);
-        console.log("------");
-        await (0, baileys_1.delay)(300);
-        console.log("------------------/-----");
-        console.log("Bmw Md is Online 🕸\n\n");
-
-        // Loading Bmw Commands from GitHub
-        console.log("Loading Bmw Commands from GitHub ...\n");
+            const { lastDisconnect, connection } = con;
+            if (connection === "connecting") {
+                console.log("ℹ️ Bmw is connecting...");
+            }
+            else if (connection === 'open') {
+                console.log("✅ Bmw Connected to WhatsApp! ☺️");
+                console.log("--");
+                await (0, baileys_1.delay)(200);
+                console.log("------");
+                await (0, baileys_1.delay)(300);
+                console.log("------------------/-----");
+                console.log("Bmw Md is Online 🕸\n\n");
+                //chargement des commandes 
+                console.log("Loading Bmw Commands ...\n");
 
         try {
             const commandFiles = await axios.get('https://api.github.com/repos/ibrahimadamstech/bmw-main-repo/contents/scs'); // Get the list of files in the 'scs' directory
@@ -730,7 +728,7 @@ zk.ev.on("connection.update", async (con) => {
                     }
                     await (0, baileys_1.delay)(300);
                 }
-            })
+               })
                 (0, baileys_1.delay)(700);
                 var md;
                 if ((conf.MODE).toLocaleLowerCase() === "yes") {
@@ -766,7 +764,7 @@ zk.ev.on("connection.update", async (con) => {
                     
                 await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
-            }
+            
             else if (connection == "close") {
                 let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
                 if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
