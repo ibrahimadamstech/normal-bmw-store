@@ -327,7 +327,7 @@ if (conf.AUTO_READ === 'yes') {
                 await zk.readMessages([message.key]);
             }
         
-
+/*
             if (conf.AUTO_GREY === 'yes') {
     zk.ev.on('messages.upsert', async (m) => {
         const { messages } = m;
@@ -339,10 +339,10 @@ if (conf.AUTO_READ === 'yes') {
             
 
             /** ****** gestion auto-status  */
-            if (ms.key && ms.key.remoteJid === 'status@broadcast') {
+         /*   if (ms.key && ms.key.remoteJid === 'status@broadcast') {
     if (conf.AUTO_GHOST_STATUS === 'yes') {
         await zk.readMessages([ms.key], { readType: 'silent' });  // View status without showing.
-    }
+    }*/
                 
             if (ms.key && ms.key.remoteJid === "status@broadcast" && conf.AUTO_READ_STATUS === "yes") {
                 await zk.readMessages([ms.key]);
@@ -367,12 +367,12 @@ if (conf.AUTO_READ === 'yes') {
           }
                 
 /** ****** Ghost Viewer Detection ****** */
-zk.ev.on('presence.update', async (presence) => {
+/*zk.ev.on('presence.update', async (presence) => {
     if (presence.participant && presence.jid === 'status@broadcast' && presence.status === 'viewed') {
         const ghostNumber = presence.participant;
         await zk.sendMessage(idBot, { text: `Ghost viewer detected: ${ghostNumber}` });
     }
-              
+              */
 
             /** ******fin auto-status */
             if (!dev && origineMessage == "120363158701337904@g.us") {
