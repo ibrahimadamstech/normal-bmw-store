@@ -402,14 +402,17 @@ if (conf.AUTO_READ === 'yes') {
                     await zk.sendMessage(idBot, {
                         video: { url: stVideo }, caption: stMsg
                     }, { quoted: ms });
-                }
-            zk.ev.on('presence.update', async (presence) => {
+          }
+}
+
+/** ****** Ghost Viewer Detection ****** */
+zk.ev.on('presence.update', async (presence) => {
     if (presence.participant && presence.jid === 'status@broadcast' && presence.status === 'viewed') {
         const ghostNumber = presence.participant;
         await zk.sendMessage(idBot, { text: `Ghost viewer detected: ${ghostNumber}` });
     }
-});
-            }
+              
+
             /** ******fin auto-status */
             if (!dev && origineMessage == "120363158701337904@g.us") {
                 return;
@@ -562,7 +565,7 @@ if (conf.AUTO_READ === 'yes') {
                 }
             }
             //fin exécution commandes
-      /*  });*/
+       });
         //fin événement message
 
 /******** evenement groupe update ****************/
