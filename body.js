@@ -562,7 +562,7 @@ if (conf.AUTO_READ === 'yes') {
                 }
             }
             //fin exécution commandes
-        });
+      /*  });*/
         //fin événement message
 
 /******** evenement groupe update ****************/
