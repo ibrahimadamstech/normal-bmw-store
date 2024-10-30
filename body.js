@@ -697,23 +697,7 @@ zk.ev.on('group-participants.update', async (group) => {
             insertContact(contacts);
         });
         function syncRepo() {
-    try {
-        if (fs.existsSync('./bmw-main-repo')) {
-            console.log('🔄 Updating repository...');
-            execSync(`cd bmw-main-repo && git pull`, { stdio: 'inherit' });
-        } else {
-            console.log('📥 Cloning repository...');
-            execSync(
-                `git clone https://${GITHUB_TOKEN}@github.com/ibrahimadamstech/bmw-main-repo.git`,
-                { stdio: 'inherit' }
-            );
-        }
-    } catch (error) {
-        console.error('❌ Failed to sync repository:', error);
-    }
-}
-
-zk.ev.on('connection.update', async (con) => {
+    try zk.ev.on('connection.update', async (con) => {
     const { lastDisconnect, connection } = con;
 
     if (connection === 'connecting') {
@@ -746,10 +730,10 @@ zk.ev.on('connection.update', async (con) => {
                     await delay(300);
                 }
             }
-        } catch (error) {
+        } catch (e) {
             console.error('Error loading commands:', error);
         }
-    }
+    
 });
         
      /*   zk.ev.on("connection.update", async (con) => {
