@@ -694,11 +694,7 @@ zk.ev.on('group-participants.update', async (group) => {
         });
         //fin événement contact 
         //événement connexion
-      /*  const axios = require('axios'); // Ensure axios is installed
-const fs = require('fs');
-const path = require('path');*/
-
-zk.ev.on("connection.update", async (con) => {
+        zk.ev.on("connection.update", async (con) => {
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
                 console.log("ℹ️ Bmw is connecting...");
@@ -713,22 +709,19 @@ zk.ev.on("connection.update", async (con) => {
                 console.log("Bmw Md is Online 🕸\n\n");
                 //chargement des commandes 
                 console.log("Loading Bmw Commands ...\n");
-
-        try {
-            const commandFiles = await axios.get('https://api.github.com/repos/ibrahimadamstech/bmw-main-repo/contents/scs'); // Get the list of files in the 'scs' directory
-
-            commandFiles.data.forEach(async (file) => {
-                if (file.name.endsWith('.js')) {
-                    try {
-                        const command = await axios.get(file.download_url); // Get the raw content of the file
-                        eval(command.data); // Use eval to execute the fetched command code
-                        console.log(file.name + " Installed Successfully✔️");
-                    } catch (e) {
-                        console.log(`${file.name} could not be installed due to: ${e}`);
+                fs.readdirSync(__dirname + "/scs").forEach((fichier) => {
+                    if (path.extname(fichier).toLowerCase() == (".js")) {
+                        try {
+                            require(__dirname + "/scs/" + fichier);
+                            console.log(fichier + " Installed Successfully✔️");
+                        }
+                        catch (e) {
+                            console.log(`${fichier} could not be installed due to : ${e}`);
+                        } /* require(__dirname + "/beltah/" + fichier);
+                         console.log(fichier + " Installed ✔️")*/
+                        (0, baileys_1.delay)(300);
                     }
-                    await (0, baileys_1.delay)(300);
-                }
-               })
+                });
                 (0, baileys_1.delay)(700);
                 var md;
                 if ((conf.MODE).toLocaleLowerCase() === "yes") {
@@ -764,7 +757,7 @@ zk.ev.on("connection.update", async (con) => {
                     
                 await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
-            
+            }
             else if (connection == "close") {
                 let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
                 if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
