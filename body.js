@@ -858,7 +858,7 @@ zk.ev.on('group-participants.update', async (group) => {
                 await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
             }
-            else if (connection == "close") {
+         /*   else if (connection == "close") {
                 let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
                 if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
                     console.log('Session id error, rescan again...');
@@ -882,7 +882,7 @@ zk.ev.on('group-participants.update', async (group) => {
                     main();
                 }   else {
 
-                    console.log('redemarrage sur le coup de l\'erreur  ',raisonDeconnexion) ;         
+                    console.log('redemarrage sur le coup de l\'erreur  ',raisonDeconnexion) ;        */ 
                     //repondre("* Redémarrage du bot en cour ...*");
 
                                 const {exec}=require("child_process") ;
