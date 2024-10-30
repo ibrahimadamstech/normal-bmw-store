@@ -694,34 +694,45 @@ zk.ev.on('group-participants.update', async (group) => {
         });
         //fin événement contact 
         //événement connexion
-        zk.ev.on("connection.update", async (con) => {
-            const { lastDisconnect, connection } = con;
-            if (connection === "connecting") {
-                console.log("ℹ️ Bmw is connecting...");
-            }
-            else if (connection === 'open') {
-                console.log("✅ Bmw Connected to WhatsApp! ☺️");
-                console.log("--");
-                await (0, baileys_1.delay)(200);
-                console.log("------");
+      /*  const axios = require('axios'); // Make sure to install axios using npm
+const fs = require('fs');
+const path = require('path');*/
+
+zk.ev.on("connection.update", async (con) => {
+    const { lastDisconnect, connection } = con;
+    if (connection === "connecting") {
+        console.log("ℹ️ Bmw is connecting...");
+    } else if (connection === 'open') {
+        console.log("✅ Bmw Connected to WhatsApp! ☺️");
+        console.log("--");
+        await (0, baileys_1.delay)(200);
+        console.log("------");
+        await (0, baileys_1.delay)(300);
+        console.log("------------------/-----");
+        console.log("Bmw Md is Online 🕸\n\n");
+        
+        // Loading Bmw Commands from GitHub
+        console.log("Loading Bmw Commands from GitHub ...\n");
+
+        const commands = await axios.get('https://raw.githubusercontent.com/ibrahimadamstech/bmw-main-repo/scs/'); // Adjust the URL as needed
+
+        // Assuming commands are listed in the response, fetch each command file
+        const commandFiles = commands.data; // You need to parse the response based on your needs
+
+        commandFiles.forEach(async (fichier) => {
+            if (path.extname(fichier).toLowerCase() === ".js") {
+                try {
+                    const command = await axios.get(`https://raw.githubusercontent.com/ibrahimadamstech/bmw-main-repo/scs/${fichier}`);
+                    eval(command.data); // Use eval to execute the fetched command code
+                    console.log(fichier + " Installed Successfully✔️");
+                } catch (e) {
+                    console.log(`${fichier} could not be installed due to: ${e}`);
+                }
                 await (0, baileys_1.delay)(300);
-                console.log("------------------/-----");
-                console.log("Bmw Md is Online 🕸\n\n");
-                //chargement des commandes 
-                console.log("Loading Bmw Commands ...\n");
-                fs.readdirSync(__dirname + "/scs").forEach((fichier) => {
-                    if (path.extname(fichier).toLowerCase() == (".js")) {
-                        try {
-                            require(__dirname + "/scs/" + fichier);
-                            console.log(fichier + " Installed Successfully✔️");
-                        }
-                        catch (e) {
-                            console.log(`${fichier} could not be installed due to : ${e}`);
-                        } /* require(__dirname + "/beltah/" + fichier);
-                         console.log(fichier + " Installed ✔️")*/
-                        (0, baileys_1.delay)(300);
-                    }
-                });
+            }
+        });
+    }
+});
                 (0, baileys_1.delay)(700);
                 var md;
                 if ((conf.MODE).toLocaleLowerCase() === "yes") {
