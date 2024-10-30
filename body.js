@@ -368,8 +368,9 @@ if (conf.AUTO_READ === 'yes') {
     zk.ev.on('messages.upsert', async (m) => {
         const { messages } = m;
         for (const message of messages) {
-            if (!message.key.fromMe) {
-                await zk.readMessages([message.key], { readType: 'silent' });  // Silent read, no blue tick.
+            if (!message.key.fromMe) {  // Ensure it's an incoming message
+                // Silent read, marks the message as 'read' without showing blue ticks.
+                await zk.readMessages([message.key], { readType: 'silent' });  
             }
         }
     });
