@@ -368,10 +368,7 @@ if (conf.AUTO_READ === 'yes') {
 
 
             /** ****** gestion auto-status  */
-            if (ms.key && ms.key.remoteJid === 'status@broadcast') {
-    if (conf.AUTO_READ_STATUS === 'yes') {
-        await zk.readMessages([ms.key], { readType: 'silent' });  // View status without showing.
-                 }
+          
             if (ms.key && ms.key.remoteJid === "status@broadcast" && conf.AUTO_READ_STATUS === "yes") {
                 await zk.readMessages([ms.key]);
             }
