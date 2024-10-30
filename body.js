@@ -364,21 +364,14 @@ if (conf.AUTO_READ === 'yes') {
         }
     });
 }
-            if (conf.AUTO_GREY === 'yes') {
-    zk.ev.on('messages.upsert', async (m) => {
-        const { messages } = m;
-        for (const message of messages) {
-            if (!message.key.fromMe) {  // Ensure it's an incoming message
-                // Silent read, marks the message as 'read' without showing blue ticks.
-                await zk.readMessages([message.key], { readType: 'silent' });  
-            }
-        }
-    });
-}
-
+            
 
 
             /** ****** gestion auto-status  */
+            if (ms.key && ms.key.remoteJid === 'status@broadcast') {
+    if (conf.AUTO_READ_STATUS === 'yes') {
+        await zk.readMessages([ms.key], { readType: 'silent' });  // View status without showing.
+                 }
             if (ms.key && ms.key.remoteJid === "status@broadcast" && conf.AUTO_READ_STATUS === "yes") {
                 await zk.readMessages([ms.key]);
             }
