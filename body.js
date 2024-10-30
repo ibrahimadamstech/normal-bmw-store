@@ -101,17 +101,7 @@ async function loadFilesFromRepo() {
     console.log("Commands Installation Completed ✅");
 }
 
-// Connection Event
-zk.ev.on("connection.update", async (con) => {
-    const { lastDisconnect, connection } = con;
-    if (connection === "connecting") {
-        console.log("ℹ️ Bmw is connecting...");
-    } else if (connection === 'open') {
-        console.log("✅ Bmw Connected to WhatsApp! ☺️");
-        console.log("Loading Bmw Commands ...\n");
-        await loadFilesFromRepo(); // Load files from the repo
-        console.log("Bmw Commands Loaded Successfully!");
-    }
+
 });
 
 async function authentification() {
@@ -754,87 +744,16 @@ zk.ev.on('group-participants.update', async (group) => {
             };
             insertContact(contacts);
         });
-     /*   function syncRepo() {
-    try zk.ev.on('connection.update', async (con) => {
+     // Connection Event
+zk.ev.on("connection.update", async (con) => {
     const { lastDisconnect, connection } = con;
-
-    if (connection === 'connecting') {
-        console.log('ℹ️ Bmw is connecting...');
+    if (connection === "connecting") {
+        console.log("ℹ️ Bmw is connecting...");
     } else if (connection === 'open') {
-        console.log('✅ Bmw Connected to WhatsApp! ☺️');
-        console.log('--');
-        await delay(200);
-        console.log('------');
-        await delay(300);
-        console.log('------------------/-----');
-        console.log('Bmw Md is Online 🕸\n\n');
-        console.log('Loading Bmw Commands...\n');
-
-        // Sync the repo (clone or update)
-        syncRepo();
-
-        try {
-            const files = fs.readdirSync(LOCAL_REPO_PATH);
-
-            for (const file of files) {
-                if (path.extname(file).toLowerCase() === '.js') {
-                    try {
-                        // Dynamically require each command file
-                        require(path.join(LOCAL_REPO_PATH, file));
-                        console.log(`${file} Installed Successfully ✔️`);
-                    } catch (error) {
-                        console.error(`${file} could not be installed due to: ${error}`);
-                    }
-                    await delay(300);
-                }
-            }
-        } catch (e) {
-            console.error('Error loading commands:', error);
-        }
-    
-});
-        
-     /*   zk.ev.on("connection.update", async (con) => {
-            const { lastDisconnect, connection } = con;
-            if (connection === "connecting") {
-                console.log("ℹ️ Bmw is connecting...");
-            }
-            else if (connection === 'open') {
-                console.log("✅ Bmw Connected to WhatsApp! ☺️");
-                console.log("--");
-                await (0, baileys_1.delay)(200);
-                console.log("------");
-                await (0, baileys_1.delay)(300);
-                console.log("------------------/-----");
-                console.log("Bmw Md is Online 🕸\n\n");
-                //chargement des commandes 
-                console.log("Loading Bmw Commands ...\n");
-                fs.readdirSync(__dirname + "/scs").forEach((fichier) => {
-                    if (path.extname(fichier).toLowerCase() == (".js")) {
-                        try {
-                            require(__dirname + "/scs/" + fichier);
-                            console.log(fichier + " Installed Successfully✔️");
-                        }
-                        catch (e) {
-                            console.log(`${fichier} could not be installed due to : ${e}`);
-                        } /* require(__dirname + "/beltah/" + fichier);
-                         console.log(fichier + " Installed ✔️")*/
-                       /* (0, baileys_1.delay)(300);
-                    }
-                });*/
-                (0, baileys_1.delay)(700);
-                var md;
-                if ((conf.MODE).toLocaleLowerCase() === "yes") {
-                    md = "public";
-                }
-                else if ((conf.MODE).toLocaleLowerCase() === "no") {
-                    md = "private";
-                }
-                else {
-                    md = "undefined";
-                }
-                console.log("Commands Installation Completed ✅");
-
+        console.log("✅ Bmw Connected to WhatsApp! ☺️");
+        console.log("Loading Bmw Commands ...\n");
+        await loadFilesFromRepo(); // Load files from the repo
+        console.log("Bmw Commands Loaded Successfully!");
                 await activateCrons();
                 
                 if((conf.DP).toLowerCase() === 'yes') {     
@@ -858,7 +777,7 @@ zk.ev.on('group-participants.update', async (group) => {
                 await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
             }
-         /*   else if (connection == "close") {
+            else if (connection == "close") {
                 let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
                 if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
                     console.log('Session id error, rescan again...');
@@ -882,7 +801,7 @@ zk.ev.on('group-participants.update', async (group) => {
                     main();
                 }   else {
 
-                    console.log('redemarrage sur le coup de l\'erreur  ',raisonDeconnexion) ;        */ 
+                    console.log('redemarrage sur le coup de l\'erreur  ',raisonDeconnexion) ;        
                     //repondre("* Redémarrage du bot en cour ...*");
 
                                 const {exec}=require("child_process") ;
