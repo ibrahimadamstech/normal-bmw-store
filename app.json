@@ -10,34 +10,27 @@
   "env":{
     "PREFIX":
     {
-      "description":"choose your prefix of bot",
+      "description":"choose your prefix for your bot",
       "value":".",
       "required":true
     },
     "AUTO_READ_STATUS":
     {
-      "description":"Your contact status will be read automatically(type yes to active or no to deactive  ; don't write in capital letter)",
+      "description":"Your status will be reading automatically(type yes to active or no to deactive  ; don't write in capital letter)",
       "value":"yes",
       "required":false
     }, "AUTO_DOWNLOAD_STATUS":
     {
-      "description":"Your contact status will be download automatically and send to you(type yes to active or no to deactive ; don't write in capital letter)",
+      "description":"You status will be sending status to your inbox automatically (type yes to active or no to deactive ; don't write in capital letter)",
       "value":"no",
       "required":false
     },
     "AUTO_READ":
     {
-      "description":"Your contact  will be read messages automatically(type yes to active or no to deactive  ; don't write in capital letter)",
+      "description":"Your contact  will be reading messages automatically(type yes to active or no to deactive  ; don't write in capital letter)",
       "value":"no",
       "required":false   
       },
-    "AUTO_BIO":
-    {
-      "description":"Enter yes to set bwmxmd autobio that comes with date and time, Enter no to remove  ",
-      "value":"yes",
-      "required":false
-    }
-    ,
      "PM_PERMIT" :
      {
       "description":"Other user can't use your bot in pm (type yes to active or no to deactive ; don't write in capital letter)",
@@ -75,26 +68,25 @@
      "required" :false
     }  
 	  ,
-    "SESSION_ID":
+    "NUMERO_OWNER":
     {
-      "description":"put your session ID , the code you receive after scanning Qr code",   
-      "value":"",
-      "required":true
+      
+    "description":"Owner Number",   
+      "value":"254710772666,254739937062",
+    "required":false
       
     },
     "OWNER_NAME":
     {
     
-    "desc": "Your Name",
+    "desc": "Owner name",
     "required": false,
     "value": "𝐈𝐛𝐫𝐚𝐡𝐢𝐦 𝐀𝐝𝐚𝐦𝐬"
   },
-    "NUMERO_OWNER":
-  {
-    
-    "desc": "Your number , dont put '+' and put you area code(exemple of togo '228')",
-    "required":false,
-    "value": "254739937062,254710772666"
+    "SESSION_ID":{
+    "description":"put your session ID , the code you received from from ibrahim adams site",   
+      "value":"",
+     "required":true
   },
     "WARN_COUNT":
   {
