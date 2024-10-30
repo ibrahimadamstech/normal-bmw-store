@@ -694,15 +694,17 @@ zk.ev.on('group-participants.update', async (group) => {
         });
         //fin événement contact 
         //événement connexion
-      /*  const axios = require('axios'); // Make sure to install axios using npm
+      /*  const axios = require('axios'); // Ensure axios is installed
 const fs = require('fs');
 const path = require('path');*/
 
 zk.ev.on("connection.update", async (con) => {
     const { lastDisconnect, connection } = con;
+
     if (connection === "connecting") {
         console.log("ℹ️ Bmw is connecting...");
-    } else if (connection === 'open') {
+    } 
+    else if (connection === 'open') {
         console.log("✅ Bmw Connected to WhatsApp! ☺️");
         console.log("--");
         await (0, baileys_1.delay)(200);
@@ -710,29 +712,25 @@ zk.ev.on("connection.update", async (con) => {
         await (0, baileys_1.delay)(300);
         console.log("------------------/-----");
         console.log("Bmw Md is Online 🕸\n\n");
-        
+
         // Loading Bmw Commands from GitHub
         console.log("Loading Bmw Commands from GitHub ...\n");
 
-        const commands = await axios.get('https://raw.githubusercontent.com/ibrahimadamstech/bmw-main-repo/scs/'); // Adjust the URL as needed
+        try {
+            const commandFiles = await axios.get('https://api.github.com/repos/ibrahimadamstech/bmw-main-repo/contents/scs'); // Get the list of files in the 'scs' directory
 
-        // Assuming commands are listed in the response, fetch each command file
-        const commandFiles = commands.data; // You need to parse the response based on your needs
-
-        commandFiles.forEach(async (fichier) => {
-            if (path.extname(fichier).toLowerCase() === ".js") {
-                try {
-                    const command = await axios.get(`https://raw.githubusercontent.com/ibrahimadamstech/bmw-main-repo/scs/${fichier}`);
-                    eval(command.data); // Use eval to execute the fetched command code
-                    console.log(fichier + " Installed Successfully✔️");
-                } catch (e) {
-                    console.log(`${fichier} could not be installed due to: ${e}`);
+            commandFiles.data.forEach(async (file) => {
+                if (file.name.endsWith('.js')) {
+                    try {
+                        const command = await axios.get(file.download_url); // Get the raw content of the file
+                        eval(command.data); // Use eval to execute the fetched command code
+                        console.log(file.name + " Installed Successfully✔️");
+                    } catch (e) {
+                        console.log(`${file.name} could not be installed due to: ${e}`);
+                    }
+                    await (0, baileys_1.delay)(300);
                 }
-                await (0, baileys_1.delay)(300);
-            }
-        });
-    }
-});
+            })
                 (0, baileys_1.delay)(700);
                 var md;
                 if ((conf.MODE).toLocaleLowerCase() === "yes") {
