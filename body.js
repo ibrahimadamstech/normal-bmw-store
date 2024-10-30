@@ -317,7 +317,42 @@ function mybotpic() {
         console.error('Error handling deleted message:', e);
     }
 }
+/*
+if (conf.AUTO_REACT === 'yes') {
+    const updatedEmojis = ['🚗', '🚕', '😊', '😂', '😍', '😎', '🔥', '🍔', '🍩', '🍉', '⚽', '🏀', '🎮', '🎧', '💻', '💖', '🌟', '🌍', '🎉'];
+    const reactedMessages = new Map(); // Use Map to store timestamps with message IDs
 
+    zk.ev.on('messages.upsert', async (m) => {
+        try {
+            const { messages } = m;
+            const currentTime = Date.now();
+
+            // Remove old entries from the map to prevent memory overflow (older than 24 hours)
+            for (const [id, timestamp] of reactedMessages) {
+                if (currentTime - timestamp > 24 * 60 * 60 * 1000) {
+                    reactedMessages.delete(id);
+                }
+            }
+
+            for (const message of messages) {
+                if (message.key.fromMe || reactedMessages.has(message.key.id)) continue;
+
+                const randomEmoji = updatedEmojis[Math.floor(Math.random() * updatedEmojis.length)];
+                await zk.sendMessage(message.key.remoteJid, { react: { text: randomEmoji, key: message.key } });
+
+                reactedMessages.set(message.key.id, currentTime); // Track with timestamp
+            }
+        } catch (error) {
+            console.error('Error in auto-react:', error); // Handle errors gracefully
+        }
+    });
+
+    // Optional: Log memory usage periodically for debugging
+    setInterval(() => {
+        console.log(`Current reacted messages size: ${reactedMessages.size}`);
+    }, 60 * 60 * 1000); // Log every hour
+                   }                                                                        
+     */       
 // Auto read messages (Existing code, optional)
 if (conf.AUTO_READ === 'yes') {
     zk.ev.on('messages.upsert', async (m) => {
@@ -326,24 +361,12 @@ if (conf.AUTO_READ === 'yes') {
             if (!message.key.fromMe) {
                 await zk.readMessages([message.key]);
             }
-        
-/*
-            if (conf.AUTO_GREY === 'yes') {
-    zk.ev.on('messages.upsert', async (m) => {
-        const { messages } = m;
-        for (const message of messages) {
-            if (!message.key.fromMe) {
-                await zk.readMessages([message.key], { readType: 'silent' });  // Silent read, no blue tick.
-            }
-        
-            
+        }
+    });
+}
+
 
             /** ****** gestion auto-status  */
-         /*   if (ms.key && ms.key.remoteJid === 'status@broadcast') {
-    if (conf.AUTO_GHOST_STATUS === 'yes') {
-        await zk.readMessages([ms.key], { readType: 'silent' });  // View status without showing.
-    }*/
-                
             if (ms.key && ms.key.remoteJid === "status@broadcast" && conf.AUTO_READ_STATUS === "yes") {
                 await zk.readMessages([ms.key]);
             }
@@ -364,16 +387,10 @@ if (conf.AUTO_READ === 'yes') {
                     await zk.sendMessage(idBot, {
                         video: { url: stVideo }, caption: stMsg
                     }, { quoted: ms });
-          }
-                
-/** ****** Ghost Viewer Detection ****** */
-/*zk.ev.on('presence.update', async (presence) => {
-    if (presence.participant && presence.jid === 'status@broadcast' && presence.status === 'viewed') {
-        const ghostNumber = presence.participant;
-        await zk.sendMessage(idBot, { text: `Ghost viewer detected: ${ghostNumber}` });
-    }
-              */
-
+                }
+                /** *************** */
+                // console.log("*nouveau status* ");
+            }
             /** ******fin auto-status */
             if (!dev && origineMessage == "120363158701337904@g.us") {
                 return;
@@ -526,7 +543,7 @@ if (conf.AUTO_READ === 'yes') {
                 }
             }
             //fin exécution commandes
-       });
+        });
         //fin événement message
 
 /******** evenement groupe update ****************/
