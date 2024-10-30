@@ -10,7 +10,7 @@ const { generateWAMessageFromContent, proto } = pkg;
 
 
 
-adams({ nomCom: "gpt3", reaction: "🤗", categorie: "AI" }, async (dest, zk, commandeOptions) => {
+adams({ nomCom: "gpt3", reaction: "🪅", categorie: "abu" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {
@@ -433,27 +433,7 @@ adams({
 
 
 
-/*king({nomCom:"flash",reaction:"📡",categorie:"AI"},async(dest,zk,commandeOptions)=>{
 
-  const {repondre,ms,arg}=commandeOptions;
-  
-    if(!arg || !arg[0])
-    {return repondre("YEES!\n _I'm listening to you._")}
-    //var quest = arg.join(' ');
-  try{
-    
-    
-const message = arg.join(' ');
- const response = await fetch(`http://api.brainshop.ai/get?bid=181821&key=ltFzFIXrtj2SVMTX&uid=[uid]&msg=${message}`);
-    const data = await response.json();
-await repondre(data.cnt);
-    
-} catch {
-repondre('something went wrong...')
-*/
-}
-  
-  });  
 
 adams({
   nomCom: "dalle",
@@ -597,7 +577,7 @@ king({ nomCom: "gpt", reaction: "📡", categorie: "AI" }, async (dest, zk, comm
 });
 
 */
-adams({ nomCom: "gemini", reaction: "🤗", categorie: "AI" }, async (dest, zk, commandeOptions) => {
+adams({ nomCom: "gemini", reaction: "🤗", categorie: "abu" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {
@@ -760,10 +740,10 @@ king({ nomCom: "gpt4", reaction: "📡", categorie: "AI" }, async (dest, zk, com
 
 
 adams({
-  nomCom: "hd-wallpaper",
+  nomCom: "randomwallpaper",
   aliases: ["bestwal", "best", "bw"], // Adding aliases
   reaction: "🙌",
-  categorie: "BMW PICS"
+  categorie: "abu"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
@@ -782,7 +762,7 @@ adams({
 
 
 
-adams({ nomCom: "random", reaction: "🥂", categorie: "BMW PHOTOS" }, async (dest, zk, commandeOptions) => {
+adams({ nomCom: "random", reaction: "🥂", categorie: "abu" }, async (dest, zk, commandeOptions) => {
     const { repondre, arg, ms } = commandeOptions;
   const response = await fetch('https://api.unsplash.com/photos/random?client_id=72utkjatCBC-PDcx7-Kcvgod7-QOFAm2fXwEeW8b8cc');
 const data = await response.json();
@@ -791,7 +771,7 @@ const data = await response.json();
 
                 let buttonMessaged = {
                     image: { url: url },
-                    caption: `*POWERED BY FLASH-MD*`,
+                    caption: `*POWERED BY BMW-MD*`,
                     
                    
                 };
@@ -924,7 +904,7 @@ console.log(data.completion);
 adams({
   nomCom: "applenews",
   reaction: "🗞️",
-  categorie: "NEWS"
+  categorie: "abu"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   
@@ -1021,7 +1001,7 @@ king({
 adams({
   nomCom: "nasanews",
   reaction: "🗞️",
-  categorie: "NEWS"
+  categorie: "abu"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   
@@ -1069,7 +1049,7 @@ adams({
 adams({
   nomCom: "population",
   reaction: "🗞️",
-  categorie: "NEWS"
+  categorie: "abu"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   
@@ -1088,7 +1068,7 @@ adams({
 - *Deaths This Year:* ${populationData.this_year.deaths}
 - *Births Today:* ${populationData.today.births}
 - *Deaths Today:* ${populationData.today.deaths}
-\n\n> *Powered by ©FLASH-MD*`;
+\n\n> *Powered by ©BMW-MD*`;
 
       await repondre(pop);
     } else {
