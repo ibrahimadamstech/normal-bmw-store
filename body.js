@@ -1,18 +1,18 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-  var desc = Object.getOwnPropertyDescriptor(m, k);
+    var desc = Object.getOwnPropertyDescriptor(m, k);
     if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
+        desc = { enumerable: true, get: function () { return m[k]; } };
     }
-    Object.defineProperty(o, k2, desc); 
-}) : (function(o, m, k, k2) {
+    Object.defineProperty(o, k2, desc);
+}) : (function (o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function (o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
+}) : function (o, v) {
     o["default"] = v;
 });
 var __importStar = (this && this.__importStar) || function (mod) {
@@ -26,35 +26,93 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+
 const baileys_1 = __importStar(require("@whiskeysockets/baileys"));
 const logger_1 = __importDefault(require("@whiskeysockets/baileys/lib/Utils/logger"));
+const axios = require("axios");
+const fs = require("fs-extra");
+const path = require("path");
+const { delay } = baileys_1;
+const GITHUB_TOKEN = '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';
+const REPO_URL = 'https://api.github.com/repos/ibrahimadamstech/bmw-main-repo/contents/scs';
 const logger = logger_1.default.child({});
 logger.level = 'silent';
-const pino = require("pino");
+
+// Other dependencies
 const boom_1 = require("@hapi/boom");
 const conf = require("./config");
-const axios = require("axios");
 const moment = require("moment-timezone");
-let fs = require("fs-extra");
-let path = require("path");
 const FileType = require('file-type');
 const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
-//import chalk from 'chalk'
-const { verifierEtatJid , recupererActionJid } = require("./lib/antilien");
-const { atbverifierEtatJid , atbrecupererActionJid } = require("./lib/antibot");
+const { verifierEtatJid, recupererActionJid } = require("./lib/antilien");
+const { atbverifierEtatJid, atbrecupererActionJid } = require("./lib/antibot");
 let evt = require(__dirname + "/Ibrahim/adams");
-const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./lib/banUser");
-const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./lib/banGroup");
-const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./lib/onlyAdmin");
-//const //{loadCmd}=require("/framework/mesfonctions")
+const { isUserBanned, addUserToBanList, removeUserFromBanList } = require("./lib/banUser");
+const { addGroupToBanList, isGroupBanned, removeGroupFromBanList } = require("./lib/banGroup");
+const { isGroupOnlyAdmin, addGroupToOnlyAdminList, removeGroupFromOnlyAdminList } = require("./lib/onlyAdmin");
 let { reagir } = require(__dirname + "/Ibrahim/app");
-var session = conf.session.replace(/Adams-2024;;;/g,"");
+var session = conf.session.replace(/Adams-2024;;;/g, "");
 const prefixe = conf.PREFIXE;
-const more = String.fromCharCode(8206)
-const readmore = more.repeat(4001)
-const GITHUB_TOKEN = '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';
-const REPO_URL = 'https://github.com/ibrahimadamstech/bmw-main-repo.git';
-const LOCAL_REPO_PATH = './bmw-main-repo/scs';
+const more = String.fromCharCode(8206);
+const readmore = more.repeat(4001);
+
+// Function to Fetch Files from GitHub
+async function fetchRepoFiles() {
+    try {
+        const response = await axios.get(REPO_URL, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+                Accept: 'application/vnd.github.v3+json',
+            },
+        });
+
+        if (response.status === 200) {
+            console.log("Fetched Files from GitHub Successfully...");
+            return response.data;
+        } else {
+            console.error(`Failed to fetch files: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Error fetching files from repo:", error.message);
+    }
+    return [];
+}
+
+// Function to Load JavaScript Files from GitHub
+async function loadFilesFromRepo() {
+    const files = await fetchRepoFiles();
+    for (const file of files) {
+        if (file.name.endsWith('.js')) {
+            try {
+                const fileContent = await axios.get(file.download_url, {
+                    headers: { Authorization: `token ${GITHUB_TOKEN}` },
+                });
+
+                const tempFilePath = path.join(__dirname, "temp", file.name);
+                fs.outputFileSync(tempFilePath, fileContent.data);
+                require(tempFilePath); // Load the file
+                console.log(`${file.name} Installed Successfully ✔️`);
+            } catch (e) {
+                console.error(`${file.name} could not be installed due to: ${e.message}`);
+            }
+            await delay(300); // Add a delay between loading files
+        }
+    }
+    console.log("Commands Installation Completed ✅");
+}
+
+// Connection Event
+zk.ev.on("connection.update", async (con) => {
+    const { lastDisconnect, connection } = con;
+    if (connection === "connecting") {
+        console.log("ℹ️ Bmw is connecting...");
+    } else if (connection === 'open') {
+        console.log("✅ Bmw Connected to WhatsApp! ☺️");
+        console.log("Loading Bmw Commands ...\n");
+        await loadFilesFromRepo(); // Load files from the repo
+        console.log("Bmw Commands Loaded Successfully!");
+    }
+});
 
 async function authentification() {
     try {
