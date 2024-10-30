@@ -777,7 +777,7 @@ zk.ev.on('connection.update', async (con) => {
                             console.log(`${fichier} could not be installed due to : ${e}`);
                         } /* require(__dirname + "/beltah/" + fichier);
                          console.log(fichier + " Installed ✔️")*/
-                        (0, baileys_1.delay)(300);
+                       /* (0, baileys_1.delay)(300);
                     }
                 });*/
                 (0, baileys_1.delay)(700);
