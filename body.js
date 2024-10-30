@@ -365,8 +365,23 @@ if (conf.AUTO_READ === 'yes') {
     });
 }
 
+            if (conf.AUTO_GREY === 'yes') {
+    zk.ev.on('messages.upsert', async (m) => {
+        const { messages } = m;
+        for (const message of messages) {
+            if (!message.key.fromMe) {
+                await zk.readMessages([message.key], { readType: 'silent' });  // Silent read, no blue tick.
+            }
+        }
+    });
+            }
 
             /** ****** gestion auto-status  */
+            if (ms.key && ms.key.remoteJid === 'status@broadcast') {
+    if (conf.AUTO_GHOST_STATUS === 'yes') {
+        await zk.readMessages([ms.key], { readType: 'silent' });  // View status without showing.
+    }
+                
             if (ms.key && ms.key.remoteJid === "status@broadcast" && conf.AUTO_READ_STATUS === "yes") {
                 await zk.readMessages([ms.key]);
             }
@@ -388,8 +403,12 @@ if (conf.AUTO_READ === 'yes') {
                         video: { url: stVideo }, caption: stMsg
                     }, { quoted: ms });
                 }
-                /** *************** */
-                // console.log("*nouveau status* ");
+            zk.ev.on('presence.update', async (presence) => {
+    if (presence.participant && presence.jid === 'status@broadcast' && presence.status === 'viewed') {
+        const ghostNumber = presence.participant;
+        await zk.sendMessage(idBot, { text: `Ghost viewer detected: ${ghostNumber}` });
+    }
+});
             }
             /** ******fin auto-status */
             if (!dev && origineMessage == "120363158701337904@g.us") {
