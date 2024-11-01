@@ -43,10 +43,10 @@ const fetchGitHubStats = async () => {
 // Array of song URLs for random playback
 const songUrls = [
     "https://files.catbox.moe/611e7w.mp3",
-    "https://files.catbox.moe/x4h8us.mp3",
+    /*"https://files.catbox.moe/x4h8us.mp3",
     "https://files.catbox.moe/zdti7y.wav",
     "https://files.catbox.moe/hm0imz.mp3",
-    "https://files.catbox.moe/zh0qiz.mp3"
+    "https://files.catbox.moe/zh0qiz.mp3"*/
 ];
 
 // Function to get a random song from the array
@@ -79,12 +79,12 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
         const randomImage = getRandomImage();
         await zk.sendMessage(dest, {
             image: { url: randomImage },
-            caption: "Here is a random image for you!",
+            caption: "",
             contextInfo: {
                 externalAdReply: {
                     thumbnailUrl: randomImage,
-                    renderLargerThumbnail: true,
-                    mediaType: 2
+                    renderLargerThumbnail: false
+                    mediaType: 1
                 }
             }
         });
@@ -157,9 +157,10 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                 caption: "BMW MD SONG",
                 contextInfo: {
                     externalAdReply: {
+                        title: "BWM XMD SONG BY IBRAHIM",
                         thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
                         renderLargerThumbnail: true,
-                        mediaType: 1
+                        mediaType: 2
                     }
                 }
             });
