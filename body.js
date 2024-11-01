@@ -108,8 +108,8 @@ setTimeout(() => {
                 };
             }
                 };
-        const zk = (0, baileys_1.default)(sockOptions);
-        store.bind(zk.ev);
+        /*const zk = (0, baileys_1.default)(sockOptions);
+        store.bind(zk.ev);*/
         setInterval(() => { store.writeToFile("store.json"); }, 3000);
         zk.ev.on("call", async (callData) => {
   if (conf.ANTICALL === 'yes') {
