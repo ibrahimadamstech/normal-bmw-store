@@ -240,13 +240,16 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
 
     // Updated infoMsg with a smaller menu
     let infoMsg = `
-╭── *BMW MD STATUS* ──╮
-│ ᴍᴏᴅᴇ: *${mode}*
-│ ᴘʀᴇғɪx: *${prefixe}*
-│ ᴅᴀᴛᴇ: *${date}*
-│ ᴛɪᴍᴇ: *${temps}*
-│ ᴄᴀᴘᴀᴄɪᴛʏ: ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
-╰──────────────────╯\n\n
+╭─────═━┈┈━═──━┈⊷
+┇ ʙᴏᴛ ɴᴀᴍᴇ: *ʙᴍᴡ ᴍᴅ*
+┇ ᴍᴏᴅᴇ: *${mode}*
+┇ ᴘʀᴇғɪx: *[ ${prefixe} ]*
+┇ ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
+┇ ᴛʏᴘᴇ: *ᴠ6x*
+┇ ᴅᴀᴛᴇ: *${date}*
+┇ ᴛɪᴍᴇ: *${temps}*
+┇ ᴄᴀᴘᴀᴄɪᴛʏ ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
+╰─────═━┈┈━═──━┈⊷\n\n
 🌍 *BEST WHATSAPP BOT* 🌍\n\n`;
 
     // Simplified menuMsg
@@ -269,9 +272,9 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                 mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
                     title: "BWM XMD WHATSAPP HELPER",
-                    thumbnailUrl: "https://files.catbox.moe/vso27q.jpg",
+                    thumbnailUrl: "https://files.catbox.moe/0xa925.jpg",
                     renderLargerThumbnail: true, // Enlarges the image
-                    mediaType: 1
+                    mediaType: 2
                 }
             }
         });
