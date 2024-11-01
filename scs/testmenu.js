@@ -119,7 +119,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                     body: "",
                     thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg", // Full-fit photo
                     mediaType: 1,
-                    rendersmallThumbnail: false // Ensures full photo display
+                    renderlargeThumbnail: true // Ensures full photo display
                 }
             }
         });
