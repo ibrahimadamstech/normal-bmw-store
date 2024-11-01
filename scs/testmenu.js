@@ -127,24 +127,22 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
             }
         });
 
-        const songs = getRandomSongs();
-        for (const songUrl of songs) {
-            await zk.sendMessage(dest, { 
-                audio: { 
-                    url: songUrl 
-                }, 
-                mimetype: 'audio/mp4', 
-                ptt: false,
-                caption: "BMW MD SONG",
-                contextInfo: {
-                    externalAdReply: {
-                        thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
-                        renderLargerThumbnail: false, // Enlarges the image for the song
-                        mediaType: 1
-                    }
+        await zk.sendMessage(dest, { 
+            audio: { 
+                url: "https://files.catbox.moe/oordg5.mp3" // Replace with your audio URL
+            }, 
+            mimetype: 'audio/mp4', 
+            ptt: false, // Set to true if you want it as a voice note
+            caption: "BMW MD SONG",
+            contextInfo: {
+                externalAdReply: {
+                    body: "BWM SONG BY IBRAHIM",
+                    thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
+                    sourceUrl: 'https://whatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y',
+                    rendersmallThumbnail: false
                 }
-            });
-        }
+            }
+        });
     } catch (e) {
         console.log("🥵🥵 Menu error " + e);
         repondre("🥵🥵 Menu error " + e);
