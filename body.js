@@ -317,42 +317,20 @@ function mybotpic() {
         console.error('Error handling deleted message:', e);
     }
 }
-/*
-if (conf.AUTO_REACT === 'yes') {
-    const updatedEmojis = ['🚗', '🚕', '😊', '😂', '😍', '😎', '🔥', '🍔', '🍩', '🍉', '⚽', '🏀', '🎮', '🎧', '💻', '💖', '🌟', '🌍', '🎉'];
-    const reactedMessages = new Map(); // Use Map to store timestamps with message IDs
 
-    zk.ev.on('messages.upsert', async (m) => {
-        try {
-            const { messages } = m;
-            const currentTime = Date.now();
+if (!superUser && origineMessage  === auteurMessage && conf.AUTO_REACT === "yes") {
+const emojis = ['🐡', '🦈', '🐙', '🦑', '🦀', '🦞', '🦐', '🦪', '🐚', '🐌', '🦋', '🐛', '🐜', '🐝', '🐞', '🦗', '🕷️', '🕸️', '🦂', '🦟', '🦠', '💐', '🌸', '💮', '🏵️', '🌹', '🥀', '🌺', '🌻', '🌼', '🌷', '🌱', '🌲', '🌳', '🌴', '🌵', '🎋', '🎍', '🌾', '🌿', '☘️', '🍀', '🍁', '🍂', '🍃', '🌍️', '🌎️', '🌏️', '🌑', '🌒', '🌓', '🌔', '🌕️', '🌖', '🌗', '🌘', '🌙', '🌚', '🌛', '🌜️', '☀️', '🌝', '🌞', '🪐', '💫', '⭐️', '🌟', '✨', '🌠', '🌌', '☁️', '⛅️', '⛈️', '🌤️', '🌥️', '🌦️', '🌧️', '🌨️', '🌩️', '🌪️', '🌫️', '🌬️', '🌀', '🌈', '🌂', '☂️', '☔️', '⛱️', '⚡️', '❄️', '☃️', '⛄️', '☄️', '🔥', '💧', '🌊', '💥', '💦', '💨', '😀', '😃', '😄', '😁', '😆', '😅', '🤣', '😂', '🙂', '🙃', '😉', '😊', '😇', '🥰', '😍', '🤩', '😘', '😗', '☺️', '😚', '😙', '😋', '😛', '😜', '🤪', '😝', '🤑', '🤗', '🤭', '🤫', '🤔', '🤐', '🤨', '😐️', '😑', '😶', '😏', '😒', '🙄', '😬', '🤥', '😌', '😔', '😪', '😮‍', '💨', '🤤', '😴', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '🥵', '🥶', '😶‍', '🌫️', '🥴', '😵‍', '💫', '😵', '🤯', '🤠', '🥳', '😎', '🤓', '🧐', '😕', '😟', '🙁', '☹️', '😮', '😯', '😲', '😳', '🥺', '😦', '😧', '😨', '😰', '😥', '😢', '😭', '😱', '😖', '😣', '😞', '😓', '😩', '😫', '🥱', '😤', '😡', '😠', '🤬', '😈', '👿', '💀', '☠️', '💩', '🤡', '👹', '👺', '👻', '👽️', '👾', '🤖', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '🙈', '🙉', '🙊', '👋', '🤚', '🖐️', '✋', '🖖', '👌', '🤏', '✌️', '🤞', '🤟', '🤘', '🤙', '👈️', '👉️', '👆️', '🖕', '👇️', '☝️', '👍️', '👎️', '✊', '👊', '🤛', '🤜', '👏', '🙌', '👐', '🤲', '🤝', '🙏', '✍️', '💅', '🤳', '💪', '🦾', '🦿', '🦵', '🦶', '👂️', '🦻', '👃', '🧠', '🦷', '🦴', '👀', '👁️', '👅', '👄', '💋', '👶', '🧒', '👦', '👧']
+         const emokis = emojis[Math.floor(Math.random() * (emojis.length))]
+         zk.sendMessage(origineMessage, {
+             react: {
+                 text: emokis,
+                 key: ms.key
+             }
+         })
+     }
 
-            // Remove old entries from the map to prevent memory overflow (older than 24 hours)
-            for (const [id, timestamp] of reactedMessages) {
-                if (currentTime - timestamp > 24 * 60 * 60 * 1000) {
-                    reactedMessages.delete(id);
-                }
-            }
 
-            for (const message of messages) {
-                if (message.key.fromMe || reactedMessages.has(message.key.id)) continue;
-
-                const randomEmoji = updatedEmojis[Math.floor(Math.random() * updatedEmojis.length)];
-                await zk.sendMessage(message.key.remoteJid, { react: { text: randomEmoji, key: message.key } });
-
-                reactedMessages.set(message.key.id, currentTime); // Track with timestamp
-            }
-        } catch (error) {
-            console.error('Error in auto-react:', error); // Handle errors gracefully
-        }
-    });
-
-    // Optional: Log memory usage periodically for debugging
-    setInterval(() => {
-        console.log(`Current reacted messages size: ${reactedMessages.size}`);
-    }, 60 * 60 * 1000); // Log every hour
-                   }                                                                        
-     */       
+            /************************ anti-delete-message */
 // Auto read messages (Existing code, optional)
 if (conf.AUTO_READ === 'yes') {
     zk.ev.on('messages.upsert', async (m) => {
