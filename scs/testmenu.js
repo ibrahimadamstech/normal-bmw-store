@@ -78,7 +78,8 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
     try {
         const randomImage = getRandomImage();
         await zk.sendMessage(dest, {
-            image: { url: randomImage }
+            image: { url: randomImage },
+            caption: "Here is a random image for you!",
             contextInfo: {
                 externalAdReply: {
                     thumbnailUrl: randomImage,
