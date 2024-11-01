@@ -42,11 +42,11 @@ const fetchGitHubStats = async () => {
 
 // Array of song URLs for random playback
 const songUrls = [
-    "sng1.mp3",
-    "sng2.mp3",
-    "sng3.mp3",
-    "sng4.mp3",
-    "sng5.mp3"
+    "https://files.catbox.moe/611e7w.mp3",
+    "https://files.catbox.moe/x4h8us.mp3",
+    "https://files.catbox.moe/zdti7y.wav",
+    "https://files.catbox.moe/hm0imz.mp3",
+    "https://files.catbox.moe/zh0qiz.mp3"
 ];
 
 // Function to get a random song from the array
@@ -78,13 +78,12 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
     try {
         const randomImage = getRandomImage();
         await zk.sendMessage(dest, {
-            image: { url: randomImage },
-            caption: "Here is a random image for you!",
-            contextInfo: {
+            image: { url: randomImage }
+            /*contextInfo: {
                 externalAdReply: {
                     thumbnailUrl: randomImage,
                     renderLargerThumbnail: true,
-                    mediaType: 1
+                    mediaType: 1*/
                 }
             }
         });
@@ -105,30 +104,31 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
 
         // Updated infoMsg with a smaller menu
         let infoMsg = `
-        ╭─────═━┈┈━═──━┈⊷
-        ┇ ʙᴏᴛ ɴᴀᴍᴇ: *ʙᴍᴡ ᴍᴅ*
-        ┇ ᴏᴡɴᴇʀ: ɪʙʀᴀʜɪᴍ ᴀᴅᴀᴍs
-        ┇ ᴍᴏᴅᴇ: *${mode}*
-        ┇ ᴘʀᴇғɪx: *[ ${prefixe} ]*
-        ┇ ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
-        ┇ ᴛʏᴘᴇ: *ᴠ6x*
-        ┇ ᴅᴀᴛᴇ: *${date}*
-        ┇ ᴛɪᴍᴇ: *${temps}*
-        ┇ ᴄᴀᴘᴀᴄɪᴛʏ ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
-        ╰─────═━┈┈━═──━┈⊷\n\n
-        🌍 *BEST WHATSAPP BOT* 🌍\n\n`;
+╭─────═━┈┈━═──━┈⊷
+┇ ʙᴏᴛ ɴᴀᴍᴇ: *ʙᴍᴡ ᴍᴅ*
+┇ ᴏᴡɴᴇʀ: ɪʙʀᴀʜɪᴍ ᴀᴅᴀᴍs
+┇ ᴍᴏᴅᴇ: *${mode}*
+┇ ᴘʀᴇғɪx: *[ ${prefixe} ]*
+┇ ᴘʟᴀᴛғᴏʀᴍ: *${os.platform()}*
+┇ ᴛʏᴘᴇ: *ᴠ6x*
+┇ ᴅᴀᴛᴇ: *${date}*
+┇ ᴛɪᴍᴇ: *${temps}*
+┇ ᴄᴀᴘᴀᴄɪᴛʏ ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
+╰─────═━┈┈━═──━┈⊷\n\n
+🌍 *BEST WHATSAPP BOT* 🌍\n\n`;
 
-        // Simplified menuMsg
-        let menuMsg = `${readmore}  
-        ╭─── *COMMAND LIST* ───╮\n`;
+    // Simplified menuMsg
+    let menuMsg = `${readmore}  
+╭─── *COMMAND LIST* ───╮\n`;
 
-        Object.keys(coms).sort().forEach((cat) => {
-            menuMsg += `\n*${cat}*:\n`;
-            coms[cat].forEach((cmd) => {
-                menuMsg += `- ${cmd}\n`;
-            });
+    const sortedCategories = Object.keys(coms).sort();
+    sortedCategories.forEach((cat) => {
+        menuMsg += `\n*${cat}*:\n`;
+        coms[cat].forEach((cmd) => {
+            menuMsg += `- ${cmd}\n`;
         });
-        menuMsg += "\n╰──────────────────╯";
+    });
+    menuMsg += "\n╰──────────────────╯";
 
         // Send the main menu message
         await zk.sendMessage(dest, { 
@@ -137,7 +137,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                 mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
                     title: "BWM XMD WHATSAPP HELPER",
-                    thumbnailUrl: "https://files.catbox.moe/0xa925.jpg",
+                    thumbnailUrl: "",
                     renderLargerThumbnail: true,
                     mediaType: 2
                 }
