@@ -8,7 +8,7 @@ const moment = require("moment-timezone");
 const s = require(__dirname + "/../config");
 
 const more = String.fromCharCode(8206);
-const readmore = more.repeat(2000); // Adjusted for medium-small menu
+const readmore = more.repeat(4001);
 
 const runtime = function (seconds) { 
     seconds = Number(seconds); 
@@ -63,18 +63,16 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
         mode = "Private";
     }
 
-    cm.map(async (com, index) => {
+    cm.map(async (com) => {
         const categoryUpper = com.categorie.toUpperCase();
-        if (!coms[categoryUpper])
-            coms[categoryUpper] = [];
+        if (!coms[categoryUpper]) coms[categoryUpper] = [];
         coms[categoryUpper].push(com.nomCom);
     });
 
-    moment.tz.setDefault(`${s.TZ}`);
+    moment.tz.setDefault('${s.TZ}');
     const temps = moment().format('HH:mm:ss');
     const date = moment().format('DD/MM/YYYY');
     const hour = moment().hour();
-
     let greeting = "Good night";
     if (hour >= 0 && hour <= 11) greeting = "Good morning";
     else if (hour >= 12 && hour <= 16) greeting = "Good afternoon";
@@ -116,37 +114,38 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
 ▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄`;
 
     try {
-    await zk.sendMessage(dest, { 
-        text: infoMsg + menuMsg,
-        contextInfo: {
-            mentionedJid: [nomAuteurMessage],
-            externalAdReply: {
-                thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg",
-                renderLargerThumbnail: true,
-                mediaType: 1 // Ensures the image shows fit to screen
-            }
-        }
-    });
-
-    const songs = getRandomSongs();
-    for (const songUrl of songs) {
         await zk.sendMessage(dest, { 
-            audio: { 
-                url: songUrl 
-            }, 
-            mimetype: 'audio/mp4', 
-            ptt: false,
-            caption: "BMW MD SONG",
+            text: infoMsg + menuMsg,
             contextInfo: {
+                mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
-                    thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
+                    thumbnailUrl: "https://telegra.ph/file/4143dfac775bff078cc5a.jpg",
                     renderLargerThumbnail: true,
-                    mediaType: 1 // Set this for audio as well for consistent display
+                    mediaType: 1
                 }
             }
         });
+
+        const songs = getRandomSongs();
+        for (const songUrl of songs) {
+            await zk.sendMessage(dest, { 
+                audio: { 
+                    url: songUrl 
+                }, 
+                mimetype: 'audio/mp4', 
+                ptt: false,
+                caption: "BMW MD SONG",
+                contextInfo: {
+                    externalAdReply: {
+                        thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
+                        renderLargerThumbnail: true,
+                        mediaType: 1
+                    }
+                }
+            });
+        }
+    } catch (e) {
+        console.log("🥵🥵 Menu error " + e);
+        repondre("🥵🥵 Menu error " + e);
     }
-} catch (e) {
-    console.log("🥵🥵 Menu error " + e);
-    repondre("🥵🥵 Menu error " + e);
-}
+});
