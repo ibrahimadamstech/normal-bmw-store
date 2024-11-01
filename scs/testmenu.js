@@ -1,10 +1,5 @@
 
 
-Using below code create a code that will be sending random photo of three,theni menu and audio
-
-
-
-
 
 
 const util = require('util');
