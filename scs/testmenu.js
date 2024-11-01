@@ -119,7 +119,8 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
             contextInfo: {
                 mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
-                    thumbnailUrl: "https://telegra.ph/file/4143dfac775bff078cc5a.jpg",
+                    title: "BWM XMD",
+                    thumbnailUrl: "https://files.catbox.moe/k13s7u.jpg",
                     renderLargerThumbnail: true,
                     mediaType: 1
                 }
