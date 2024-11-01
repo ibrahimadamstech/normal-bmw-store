@@ -213,7 +213,7 @@ const getRandomSongs = () => {
     return shuffled.slice(0, 5);
 };
 
-Adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions) => {
+adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions) => {
     let { ms, repondre, prefixe, nomAuteurMessage } = commandeOptions;
     let { cm } = require(__dirname + "/../Ibrahim/adams");
     var coms = {};
