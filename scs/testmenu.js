@@ -116,41 +116,37 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
 ▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄`;
 
     try {
+    await zk.sendMessage(dest, { 
+        text: infoMsg + menuMsg,
+        contextInfo: {
+            mentionedJid: [nomAuteurMessage],
+            externalAdReply: {
+                thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg",
+                renderLargerThumbnail: true,
+                mediaType: 1 // Ensures the image shows fit to screen
+            }
+        }
+    });
+
+    const songs = getRandomSongs();
+    for (const songUrl of songs) {
         await zk.sendMessage(dest, { 
-            text: infoMsg + menuMsg,
+            audio: { 
+                url: songUrl 
+            }, 
+            mimetype: 'audio/mp4', 
+            ptt: false,
+            caption: "BMW MD SONG",
             contextInfo: {
-                mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
-                    body: "©Ibrahim Adams",
-                    thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg",
-                    mediaType: 1,
-                    renderLargerThumbnail: true
+                    thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
+                    renderLargerThumbnail: true,
+                    mediaType: 1 // Set this for audio as well for consistent display
                 }
             }
         });
-
-        const songs = getRandomSongs();
-        for (const songUrl of songs) {
-            await zk.sendMessage(dest, { 
-                audio: { 
-                    url: songUrl
-                }, 
-                mimetype: 'audio/mp4', 
-                ptt: false,
-                caption: "BMW MD SONG",
-                contextInfo: {
-                    externalAdReply: {
-                        body: "BMW SONG BY IBRAHIM",
-                        thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
-                        sourceUrl: "https://whatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y", // Source URL kept in audio only
-                        rendersmallThumbnail: false
-                    }
-                }
-            });
-        }
-
-    } catch (e) {
-        console.log("🥵🥵 Menu erreur " + e);
-        repondre("🥵🥵 Menu erreur " + e);
     }
-});
+} catch (e) {
+    console.log("🥵🥵 Menu error " + e);
+    repondre("🥵🥵 Menu error " + e);
+}
