@@ -57,7 +57,7 @@ const getRandomSongs = () => {
     return shuffled.slice(0, 5);
 };
 
-adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions) => {
+adams({ nomCom: "menu", categorie: "General" }, async (dest, zk, commandeOptions) => {
     let { ms, repondre, prefixe, nomAuteurMessage } = commandeOptions;
     let { cm } = require(__dirname + "/../Ibrahim/adams");
     var coms = {};
@@ -88,7 +88,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
     // Updated infoMsg with a smaller menu
     let infoMsg = `
 ╭─────═━┈┈━═──━┈⊷
-┇ ʙᴏᴛ ɴᴀᴍᴇ: *ʙᴍᴡ ᴍᴅ*
+┇ ʙᴏᴛ ɴᴀᴍᴇ: *ʙᴡᴍ xᴍᴅ*
 ┇ ᴏᴡɴᴇʀ: ɪʙʀᴀʜɪᴍ ᴀᴅᴀᴍs
 ┇ ᴍᴏᴅᴇ: *${mode}*
 ┇ ᴘʀᴇғɪx: *[ ${prefixe} ]*
@@ -129,7 +129,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
 
         await zk.sendMessage(dest, { 
             audio: { 
-                url: "https://files.catbox.moe/oordg5.mp3" // Replace with your audio URL
+                url: "https://files.catbox.moe/p82yn3.mp3" // Replace with your audio URL
             }, 
             mimetype: 'audio/mp4', 
             ptt: false, // Set to true if you want it as a voice note
