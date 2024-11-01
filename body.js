@@ -202,7 +202,7 @@ setTimeout(() => {
 
 
 // Function to get the current date and time in Kenya
-function getCurrentDateTime() {
+/*function getCurrentDateTime() {
     const options = {
         timeZone: 'Africa/Nairobi', // Kenya time zone
         year: 'numeric',
@@ -223,7 +223,7 @@ if (conf.AUTO_BIO === "yes") {
     const bioText = `Bwm xmd is online! 🚀\n${currentDateTime}`; // Format the bio text
     await zk.updateProfileStatus(bioText); // Update the bio
     console.log(`Your: ${bioText}`); // Log the updated bio
-}
+}*/
             var etat = conf.ETAT;
 // Presence update logic based on etat value
 if (etat == 1) {
