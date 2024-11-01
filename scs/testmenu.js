@@ -119,8 +119,8 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
             contextInfo: {
                 mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
-                    title: "BWM XMD",
-                    thumbnailUrl: "https://files.catbox.moe/k13s7u.jpg",
+                    title: "BWM XMD WHATSAPP HELPER",
+                    thumbnailUrl: "https://files.catbox.moe/vso27q.jpg",
                     renderLargerThumbnail: true,
                     mediaType: 1
                 }
