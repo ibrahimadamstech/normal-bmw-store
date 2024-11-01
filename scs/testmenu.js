@@ -41,11 +41,11 @@ const fetchGitHubStats = async () => {
 
 // Array of song URLs for random playback
 const songUrls = [
-    "https://files.catbox.moe/song1.mp3",
-    "https://files.catbox.moe/song2.mp3",
-    "https://files.catbox.moe/song3.mp3",
-    "https://files.catbox.moe/song4.mp3",
-    "https://files.catbox.moe/song5.mp3"
+    "sng1.mp3",
+    "sng2.mp3",
+    "sng3.mp3",
+    "sng4.mp3",
+    "sng5.mp3"
 ];
 
 // Function to get a random song from the array
@@ -56,9 +56,9 @@ const getRandomSongs = () => {
 
 // Array of image URLs
 const imageUrls = [
-    "https://files.catbox.moe/image1.jpg",
-    "https://files.catbox.moe/image2.jpg",
-    "https://files.catbox.moe/image3.jpg"
+    "https://files.catbox.moe/0xa925.jpg",
+    "https://files.catbox.moe/k13s7u.jpg",
+    "https://files.catbox.moe/h2ydge.jpg"
 ];
 
 // Function to get a random image from the array
