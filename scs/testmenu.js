@@ -119,7 +119,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                     body: "©Ibrahim Adams",
                     thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg", // Updated photo URL
                     mediaType: 1,
-                    rendersmallThumbnail: true
+                    rendersmallThumbnail: false
                 }
             }
         });
