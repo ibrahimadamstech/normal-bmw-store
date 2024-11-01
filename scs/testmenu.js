@@ -117,9 +117,9 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                 mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
                     body: "©Ibrahim Adams",
-                    thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg", // Updated photo URL
+                    thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg", // Full-fit photo
                     mediaType: 1,
-                    rendersmallThumbnail: false
+                    rendersmallThumbnail: false // Ensures full photo display
                 }
             }
         });
@@ -138,6 +138,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
                     externalAdReply: {
                         body: "BMW SONG BY IBRAHIM",
                         thumbnailUrl: "https://files.catbox.moe/va22vq.jpeg",
+                        sourceUrl: "https://whatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y", // Added source URL for audio
                         rendersmallThumbnail: false
                     }
                 }
