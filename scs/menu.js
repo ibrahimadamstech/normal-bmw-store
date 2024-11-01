@@ -1,4 +1,4 @@
-const util = require('util');
+/*onst util = require('util');
 const fs = require('fs-extra');
 const axios = require('axios');
 const { adams } = require(__dirname + "/../Ibrahim/adams");
@@ -133,3 +133,4 @@ adams({ nomCom: "menu", categorie: "General" }, async (dest, zk, commandeOptions
         repondre("🥵🥵 Menu erreur " + e);
     }
 });
+**/
