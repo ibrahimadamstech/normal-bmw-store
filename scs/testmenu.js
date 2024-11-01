@@ -116,7 +116,7 @@ adams({ nomCom: "men", categorie: "General" }, async (dest, zk, commandeOptions)
             contextInfo: {
                 mentionedJid: [nomAuteurMessage],
                 externalAdReply: {
-                    body: "©Ibrahim Adams",
+                    body: "",
                     thumbnailUrl: "https://files.catbox.moe/h2ydge.jpg", // Full-fit photo
                     mediaType: 1,
                     rendersmallThumbnail: false // Ensures full photo display
